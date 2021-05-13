@@ -31,7 +31,7 @@ class App extends Component {
         <button className = "select-player btn-primary" onClick ={this.handleSelectPalayerO}> 0 </button></>)}
         
         {this.state.player && (<>
-        <h4>Player X {this.props.scoreX} :  {this.props.scoreO} Player 0</h4>
+        <h4 className="score">Player X {this.props.scoreX} :  {this.props.scoreO} Player 0</h4>
         <p> You selected {this.state.player}</p>
         </>)}
         {this.state.player!==null && <Board selectedPlayer = {this.state.player}/>}

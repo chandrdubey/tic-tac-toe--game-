@@ -16,7 +16,6 @@ class Board extends Component {
 
    handleSqureValue (index){
     const newSquares = this.props.squares;
-    console.log(newSquares);
     newSquares[index] = this.props.selectedPlayer;
 
    // Updating the value of squares
@@ -42,7 +41,7 @@ class Board extends Component {
       return;
     }
 
-    // Cheecking if all the cells are filled 
+    // Cheecking for draw
 
     else if(this.state.totalMoves  === 9){
         this.setState({
@@ -59,7 +58,7 @@ class Board extends Component {
      
     const updatedSquares = computerMoves(newSquares,computerPlayer);
    // Updating the value of squares
-   console.log(updatedSquares)
+
    this.props.dispatch({
      type: "MOVE UPDATE",
      payload: updatedSquares,
@@ -68,7 +67,8 @@ class Board extends Component {
    this.setState({
      squares: this.props.squares,
      totalMoves:this.state.totalMoves+1
-   })                                  
+   })        
+
    //Checking  for winners
     checkWinner =calculateWinner(this.state.squares);
    if(checkWinner){
@@ -82,19 +82,20 @@ class Board extends Component {
      return;
    }
 
-   // Cheecking if all the cells are filled 
-
+   // Cheecking for the draw 
    else if(this.state.totalMoves  === 9){
        this.setState({
          game_over:2
        })
        return;
    }
-    // console.log(this.props.squares)
+   
   };
 
-//Handle restart
+//Handle restart button
 handleRestart = ()=>{
+
+  //Updating reduxstates
   this.props.dispatch({
     type: "RESTART",
   });
@@ -109,7 +110,7 @@ handleRestart = ()=>{
     return (<Square value={this.state.squares[i]} keyValue={i} onClick ={() =>this.handleSqureValue(i)} />); 
   }
   render() {
-   //   console.log(this.props.squares + "sdasd");
+
     return (
       <>
       {this.state.game_over === 0 && (<div className="mx-auto board ">
@@ -150,20 +151,23 @@ const mapStateToProps = ({squares }) => {
 
 const computerMoves = (squares,computerPlayer)=>{
    let tempSqures =[];
+   //pushing all the unfilled square
    squares.map( (square,index)=>{
      if(square === null){
        tempSqures.push(index);
      }
    });
-   console.log(tempSqures);
+  
    // computer marks a random EMPTY squares
    const random = Math.ceil(Math.random()*tempSqures.length) - 1;
    let newSquares  = squares;
-   //console.log(random);
+
    newSquares[tempSqures[random]]  = computerPlayer;
    return  newSquares;
 }
+//Calaculate the winner                  
 const calculateWinner =(squares)=> {
+
   const lines = [
     [0, 1, 2],                                               
     [3, 4, 5],
