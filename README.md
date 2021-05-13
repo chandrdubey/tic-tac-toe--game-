@@ -16,7 +16,7 @@ This is an assignment I made for PlanetSpark Web Dev. Internship.
 ```
 > npm i  
 ```
-- Run the program by npm using
+- Run the program by using npm
 ```
 > npm start
 ```
