@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Board from './components/Board';
+import { connect } from "react-redux";
 import "./App.css";
 
 class App extends Component {
@@ -21,17 +22,29 @@ class App extends Component {
 } 
   render() {
     return (
-      <div className="header">
+      <div className="header mx-5 mt-5">
         <h1>Tic-tac-toe</h1>
-        <h3>Select player</h3>
-        <button className = "select-player" onClick ={this.handleSelectPalayerX}> X </button>
-        <button className = "select-player" onClick ={this.handleSelectPalayerO}> 0 </button>
-        {this.state.player && (<p> you selected {this.state.player}</p>)}
-        <Board />
+       
+        {  this.state.player === null && (<>
+          <h3>Select player</h3>
+        <button className = "select-player btn-primary" onClick ={this.handleSelectPalayerX}> X </button>
+        <button className = "select-player btn-primary" onClick ={this.handleSelectPalayerO}> 0 </button></>)}
+        
+        {this.state.player && (<>
+        <h4>Player X {this.props.scoreX} :  {this.props.scoreO} Player 0</h4>
+        <p> You selected {this.state.player}</p>
+        </>)}
+        {this.state.player!==null && <Board selectedPlayer = {this.state.player}/>}
       </div>
     )
   }
 }
+const mapStateToProps = ({scoreX,scoreO} ) => {
+  return {
+    scoreX,
+    scoreO
+  };
+};
 
 
-export default App;
+export default connect(mapStateToProps)(App);

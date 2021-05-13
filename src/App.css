@@ -1,7 +1,31 @@
 .select-player{
-  height: 20px;
-  width: 180px;  
+  height: 40px;
+  width: 180px;
+  color: #fff;  
 }
 .header{
   text-align: center;
+}
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 70px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 70px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.board{
+  width:210px;
 }
