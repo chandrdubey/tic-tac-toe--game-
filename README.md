@@ -2,10 +2,11 @@
 This is an assignment I made for PlanetSpark Web Dev. Internship.
 https://tic-tac-toe-game-chandra.netlify.app/
 
-## Technology stack
-1. React.js
-2. Redux
-3. Bootstrap
+## project dependencies
+1. node.js
+2. React.js
+3. Redux
+4. Bootstrap
 
 ## Installation
 - Clone the repository using `git clone` and then change the directory to root of the project
