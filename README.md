@@ -1,8 +1,8 @@
-## tic-tac-toe-game using Rract.js  
+## Tic-tac-toe-game using Rract.js  
 This is an assignment I made for PlanetSpark Web Dev. Internship.
 https://tic-tac-toe-game-chandra.netlify.app/
 
-## project dependencies
+## Project dependencies
 1. node.js
 2. React.js
 3. Redux
