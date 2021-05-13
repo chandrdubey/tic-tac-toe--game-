@@ -1,5 +1,6 @@
 ## tic-tac-toe-game using Rract.js  
 This is an assignment I made for PlanetSpark Web Dev. Internship.
+https://tic-tac-toe-game-chandra.netlify.app/
 
 ## Technology stack
 1. React.js
