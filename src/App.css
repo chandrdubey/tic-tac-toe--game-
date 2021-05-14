@@ -29,3 +29,9 @@
 .board{
   width:210px;
 }
+.score{
+  background-color: #0d77e8;
+    color: white;
+    padding: 4px;
+   
+}

@@ -15,6 +15,9 @@ class Board extends Component {
   // Handling the value of squres 
 
    handleSqureValue (index){
+     if( this.props.squares[index]){
+       return;
+     }
     const newSquares = this.props.squares;
     newSquares[index] = this.props.selectedPlayer;
 
@@ -23,13 +26,10 @@ class Board extends Component {
       type: "MOVE UPDATE",
       payload: newSquares,
     });
-    this.setState({
-      squares: this.props.squares,
-      totalMoves:this.state.totalMoves+1
-    });  
+     
 
     //Checking  for winners
-     let  checkWinner =calculateWinner(this.state.squares);
+     let  checkWinner = calculateWinner(this.state.squares);
     if(checkWinner){
       this.setState({
         game_over: 1,
@@ -43,18 +43,21 @@ class Board extends Component {
 
     // Cheecking for draw
 
-    else if(this.state.totalMoves  === 9){
+    else if(this.state.totalMoves  === 8){
         this.setState({
           game_over:2
         })
         return;
     }
    // Computer makes the next move
+   console.log(this.state.totalMoves);
    let computerPlayer = "0";
 
-   if(this.props.selectedPlayer === computerPlayer)
-
+   if(this.props.selectedPlayer === computerPlayer){
     computerPlayer = "X";
+   }
+
+    
      
     const updatedSquares = computerMoves(newSquares,computerPlayer);
    // Updating the value of squares
@@ -66,8 +69,9 @@ class Board extends Component {
 
    this.setState({
      squares: this.props.squares,
-     totalMoves:this.state.totalMoves+1
-   })        
+     totalMoves : this.state.totalMoves+2
+   });        
+   console.log(this.state.totalMoves);
 
    //Checking  for winners
     checkWinner =calculateWinner(this.state.squares);
@@ -81,7 +85,6 @@ class Board extends Component {
      });
      return;
    }
-
    // Cheecking for the draw 
    else if(this.state.totalMoves  === 9){
        this.setState({
@@ -130,12 +133,12 @@ handleRestart = ()=>{
           {this.renderSquare(8)}
         </div>
         </div>)} 
-         {this.state.game_over ===   1 && (
+         {this.state.game_over === 1 && (
            <>
            <h4> {this.state.winner} WINNER! </h4> 
            <button className="btn btn-success" onClick={this.handleRestart}>Restart</button>
            </>)}
-           {this.state.game_over ===   2 && (<>
+           {this.state.game_over === 2 && (<>
            <h4> DRAW </h4> 
            <button className="btn btn-success" onClick={this.handleRestart}>Restart</button></>)}
            
